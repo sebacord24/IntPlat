@@ -1,0 +1,46 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<script
+    src="https://www.paypal.com/sdk/js?client-id=AdinLNm6NN_paNvNYnUEeBmZzS8uh_4e3gycHD_nBe4xLlc4rH6DPdB2a_PKg5DUeFfhOoko0wX5oHsr&currency=USD"></script>
+
+    <div class="container-fluid" style="padding: 100px;padding-left: 30%;">
+        <div id="paypal-button-container">
+        </div>
+        <script>
+            paypal.Buttons({
+                createOrder: function (data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: '{{ total_paypal }}'
+                            }
+                        }]
+                    });
+                },
+
+                onApprove: function (data, actions) {
+                    actions.order.capture().then(function (details) {
+                        alert("Pago realizado");
+                        console.log(details);
+                        window.location.href = "{% url 'limpiar_carrito' %}";
+                    });
+                },
+                
+
+                oncancel: function (data) {
+                    alert("Pago cancelado");
+                    console.log(data);
+                }
+
+            }).render('#paypal-button-container');
+        </script>
+    </div>
+
+
+
+
+{% endblock %}

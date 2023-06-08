@@ -1,0 +1,69 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href='{% static "css_register/style.css" %}'>
+<div class="wrapper">
+    <div class="inner">
+        <img src="images/image-1.png" alt="" class="image-1">
+
+        <h3>Nueva cuenta</h3>
+
+        <!-- Mostrar mensajes de éxito o error -->
+        {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+              <li class="alert alert-{{ message.tags }}">{% if message.tags == 'success' %}Éxito:{% else %}Error:{% endif %} {{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        
+        <form action="/agregar_cliente/" method="post">
+
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="direccion" class="form-label">Dirección:</label>
+              <input type="text" name="direccion" id="direccion" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="rut" class="form-label">RUT:</label>
+              <input type="text" name="rut" id="rut" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña:</label>
+              <input type="password" name="password" id="password" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="pr_nombre" class="form-label">Primer Nombre:</label>
+              <input type="text" name="pr_nombre" id="pr_nombre" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="seg_nombre" class="form-label">Segundo Nombre:</label>
+              <input type="text" name="seg_nombre" id="seg_nombre" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="ap_paterno" class="form-label">Apellido Paterno:</label>
+              <input type="text" name="ap_paterno" id="ap_paterno" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="ap_materno" class="form-label">Apellido Materno:</label>
+              <input type="text" name="ap_materno" id="ap_materno" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email:</label>
+              <input type="email" name="email" id="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="fec_nac" class="form-label">Fecha de Nacimiento:</label>
+              <input type="date" name="fec_nac" id="fec_nac" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="celular" class="form-label">Celular:</label>
+                <input type="text" name="celular" id="celular" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+          </form>
+        
+      
+{% endblock %}

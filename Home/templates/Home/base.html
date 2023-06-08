@@ -1,0 +1,424 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  type='text/css' href='{% static "Home/css" %}'>
+
+    <link rel="stylesheet" href='{% static "assets/css/bootstrap.min.css" %}'>
+    <link rel="stylesheet" href='{% static "assets/css/LineIcons.3.0.css" %}'>
+    <link rel="stylesheet" href='{% static "assets/css/tiny-slider.css" %}'>
+    <link rel="stylesheet" href='{% static "assets/css/glightbox.min.css" %}'>
+    <link rel="stylesheet" href='{% static "assets/css/main.css" %}'>
+    
+
+
+    <title> {% block title %} {% endblock %} </title>
+</head>
+<body>
+
+
+
+
+
+    <!-- Start Header Area -->
+    <header class="header navbar-area">
+        <!-- Start Topbar -->
+        <div class="topbar">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="top-left">
+                            <ul class="menu-top-link">
+                                <li>
+                                    <div class="select-position">
+                                        <select id="select4">
+                                            <option value="0" selected>$ CLP</option>
+                                            <option value="1">€ EURO</option>
+                                            <option value="2">$ USD</option>
+                                            <option value="3">₹ INR</option>
+                                            <option value="4">¥ CNY</option>
+                                            <option value="5">৳ BDT</option>
+                                        </select>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="select-position">
+                                        <select id="select5">
+                                            <option value="0" selected>Español</option>
+                                            <option value="1">English</option>
+                                            <option value="2">Filipino</option>
+                                            <option value="3">Français</option>
+                                            <option value="4">العربية</option>
+                                            <option value="5">हिन्दी</option>
+                                            <option value="6">বাংলা</option>
+                                        </select>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="top-middle">
+                            <ul class="useful-links">
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="top-end">
+                            <div class="user">
+                                <i class="lni lni-user"></i>
+                                {{ user.username }}
+                            </div>
+                            <ul class="user-login">
+                                {% if user.is_authenticated %}
+                                <a href="">
+                                    <div class="enlace">
+                                        <i class='bx bx-exit bx-rotate-180'></i>
+                                        <span>Cerrar Sesion</span>
+                                    </div>
+                                </a>
+
+
+                                {% else %}
+                                    <li>
+                                        <a href="/login/">Iniciar sesíon</a>
+                                    </li>
+<li>
+    <a href="/clientes_form/">Registrarse</a>
+</li>
+                                {% endif %}
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Topbar -->
+        <!-- Start Header Middle -->
+        <div class="header-middle">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-3 col-7">
+                        <!-- Start Header Logo -->
+                        <a class="navbar-brand" href="index.html">
+                            <img src="../../static/img/logo.jpeg" alt="Logo">
+                        </a>
+                        <!-- End Header Logo -->
+                    </div>
+                    <div class="col-lg-5 col-md-7 d-xs-none">
+                        <!-- Start Main Menu Search -->
+                        <div class="main-menu-search">
+                            <div class="navbar-search search-style-5">
+
+                            </div>
+                        </div>
+                        <!-- End Main Menu Search -->
+                    </div>
+                    <div class="col-lg-4 col-md-2 col-5">
+                        <div class="middle-right-area">
+                            <div class="nav-hotline">
+                                <i class="lni lni-phone"></i>
+                                <h3>Fono:
+                                    <span>(+59) 123 456 7890</span>
+                                </h3>
+                            </div>
+                            <div class="navbar-cart">
+                                <div class="wishlist">
+                                    <a href="javascript:void(0)">
+                                        <i class="lni lni-heart"></i>
+                                        <span class="total-items">0</span>
+                                    </a>
+                                </div>
+                                <div class="cart-items">
+                                    <a href="javascript:void(0)" class="main-btn">
+                                        <i class="lni lni-cart"></i>
+                                        <span class="total-items">2</span>
+                                    </a>
+                                    <!-- Shopping Item -->
+                                    <div class="shopping-item">
+                                        <div class="dropdown-cart-header">
+                                            <span>2 Items</span>
+                                            <a href="cart.html">Compras</a>
+                                        </div>
+                                        <ul class="shopping-list">
+                                            <li>
+                                                <a href="javascript:void(0)" class="remove" title="Remove this item"><i
+                                                        class="lni lni-close"></i></a>
+                                                <div class="cart-img-head">
+                                                    <a class="cart-img" href="product-details.html"><img
+                                                            src="../../static/img/star-wars-enciclopedia-de-personajes-e1655158646421.jpg" alt="#"></a>
+                                                </div>
+
+                                                <div class="content">
+                                                    <h4><a href="product-details.html">
+                                                            Enciclopedia Star wars</a></h4>
+                                                    <p class="quantity">1x - <span class="amount">$ 50.000</span></p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)" class="remove" title="Remove this item"><i
+                                                        class="lni lni-close"></i></a>
+                                                <div class="cart-img-head">
+                                                    <a class="cart-img" href="product-details.html"><img
+                                                            src="assets/images/header/cart-items/item2.jpg" alt="#"></a>
+                                                </div>
+                                                <div class="content">
+                                                    <h4><a href="product-details.html">Gastronomia Chilena</a></h4>
+                                                    <p class="quantity">1x - <span class="amount">$ 35.000</span></p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="bottom">
+                                            <div class="total">
+                                                <span>Total</span>
+                                                <span class="total-amount">$ 85.000</span>
+                                            </div>
+                                            <div class="button">
+                                                <a href="checkout" class="btn animate">Comprar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/ End Shopping Item -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Header Middle -->
+        <!-- Start Header Bottom -->
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 col-md-6 col-12">
+                    <div class="nav-inner">
+                        <!-- Start Mega Category Menu -->
+                        <div class="mega-category-menu">
+                            <span class="cat-button"><i class="lni lni-menu"></i>Nuestras Categorias</span>
+                            <ul class="sub-category">
+                                <li><a href="product-grids.html">Ficción <i class="lni lni-chevron-right"></i></a>
+                                    <ul class="inner-sub-category">
+                                        <li><a href="product-grids.html">Novelas</a></li>
+                                        <li><a href="product-grids.html">Cuentos</a></li>
+                                        <li><a href="product-grids.html">Poesía</a></li>
+                                        <li><a href="product-grids.html">Literatura clásica</a></li>
+                                        <li><a href="product-grids.html">Literatura contemporánea</a></li>
+                                        <li><a href="product-grids.html">Ciencia ficción</a></li>
+                                        <li><a href="product-grids.html">Fantasía</a></li>
+                                        <li><a href="product-grids.html">Misterio y suspenso</a></li>
+                                        <li><a href="product-grids.html">Romance</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="product-grids.html">No Ficción <i class="lni lni-chevron-right"></i></a>
+                                    <ul class="inner-sub-category">
+                                        <li><a href="product-grids.html">Historia</a></li>
+                                        <li><a href="product-grids.html">Biografías y memorias</a></li>
+                                        <li><a href="product-grids.html">Ciencia y tecnología</a></li>
+                                        <li><a href="product-grids.html">Filosofía</a></li>
+                                        <li><a href="product-grids.html">Psicología</a></li>
+                                        <li><a href="product-grids.html">Autoayuda y desarrollo personal</a></li>
+                                        <li><a href="product-grids.html">Negocios y finanzas</a></li>
+                                        <li><a href="product-grids.html">Política y sociedad</a></li>
+                                        <li><a href="product-grids.html">Libros de referencia</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="product-grids.html">Infantil y juvenil <i class="lni lni-chevron-right"></i></a>
+                                    <ul class="inner-sub-category">
+                                        <li><a href="product-grids.html">Libros para bebés y preescolares</a></li>
+                                        <li><a href="product-grids.html">Libros ilustrados</a></li>
+                                        <li><a href="product-grids.html">Cuentos y fábulas para niños</a></li>
+                                        <li><a href="product-grids.html">Libros de actividades y juegos</a></li>
+                                        <li><a href="product-grids.html">Literatura infantil</a></li>
+                                        <li><a href="product-grids.html">Literatura juvenil</a></li>
+                                        <li><a href="product-grids.html">Libros educativos</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="product-grids.html">Educación y academia <i class="lni lni-chevron-right"></i></a>
+                                    <ul class="inner-sub-category">
+                                        <li><a href="product-grids.html">Libros de texto</a></li>
+                                        <li><a href="product-grids.html">Guías de estudio</a></li>
+                                        <li><a href="product-grids.html">Diccionarios y enciclopedias</a></li>
+                                        <li><a href="product-grids.html">Libros académicos</a></li>
+                                        <li><a href="product-grids.html">Manuales y guías temáticas</a></li>
+                                        <li><a href="product-grids.html">Libros de referencia académica</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="product-grids.html">Artes y manualidades <i class="lni lni-chevron-right"></i></a>
+                                    <ul class="inner-sub-category">
+                                        <li><a href="product-grids.html">Arte y pintura</a></li>
+                                        <li><a href="product-grids.html">Manualidades y bricolaje</a></li>
+                                        <li><a href="product-grids.html">Artes escénicas (teatro, danza, música)</a></li>
+                                        <li><a href="product-grids.html">Fotografía y diseño gráfico</a></li>
+                                        <li><a href="product-grids.html">Arquitectura y diseño de interiores</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="product-grids.html">Cocina y gastronomía <i class="lni lni-chevron-right"></i></a>
+                                    <ul class="inner-sub-category">
+                                        <li><a href="product-grids.html">Libros de recetas</a></li>
+                                        <li><a href="product-grids.html">Cocina internacional</a></li>
+                                        <li><a href="product-grids.html">Repostería y panadería</a></li>
+                                        <li><a href="product-grids.html">Nutrición y dietas</a></li>
+                                        <li><a href="product-grids.html">Libros de vinos y bebidas</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="product-grids.html">Viajes y turismo <i class="lni lni-chevron-right"></i></a>
+                                    <ul class="inner-sub-category">
+                                        <li><a href="product-grids.html">Guías de viaje</a></li>
+                                        <li><a href="product-grids.html">Libros de fotografía de viajes</a></li>
+                                        <li><a href="product-grids.html">Aventuras y exploraciones</a></li>
+                                        <li><a href="product-grids.html">Literatura de viajes</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="product-grids.html">Ciencia y naturaleza <i class="lni lni-chevron-right"></i></a>
+                                    <ul class="inner-sub-category">
+                                        <li><a href="product-grids.html">Astronomía y cosmología</a></li>
+                                        <li><a href="product-grids.html">Biología y vida silvestre</a></li>
+                                        <li><a href="product-grids.html">Medio ambiente y ecología</a></li>
+                                        <li><a href="product-grids.html">Geología y geografía</a></li>
+                                        <li><a href="product-grids.html">Libros de divulgación científica</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="product-grids.html">Religión y espiritualidad <i class="lni lni-chevron-right"></i></a>
+                                    <ul class="inner-sub-category">
+                                        <li><a href="product-grids.html">Libros sagrados</a></li>
+                                        <li><a href="product-grids.html">Filosofía religiosa</a></li>
+                                        <li><a href="product-grids.html">Espiritualidad y crecimiento personal</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="product-grids.html">Idiomas <i class="lni lni-chevron-right"></i></a>
+                                    <ul class="inner-sub-category">
+                                        <li><a href="product-grids.html">Libros de gramática</a></li>
+                                        <li><a href="product-grids.html">Diccionarios y traducciones</a></li>
+                                        <li><a href="product-grids.html">Libros para aprender idiomas</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End Mega Category Menu -->
+                        <!-- Start Navbar -->
+                        <nav class="navbar navbar-expand-lg">
+                            <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ms-auto">
+                                    <li class="nav-item">
+                                        <a href=".." class="active" aria-label="Toggle navigation">Inicio</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
+                                            data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
+                                            aria-expanded="false" aria-label="Toggle navigation">Servicios</a>
+                                        <ul class="sub-menu collapse" id="submenu-1-2">
+                                            <li class="nav-item"><a href="/mantencion/">Mantención</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="contact.html" aria-label="Toggle navigation">Contactanos</a>
+                                    </li>
+                                </ul>
+                            </div> <!-- navbar collapse -->
+                        </nav>
+                        <!-- End Navbar -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <!-- Start Nav Social -->
+                    <div class="nav-social">
+                        <h5 class="title">Siguenos:</h5>
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><i class="lni lni-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)"><i class="lni lni-skype"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Nav Social -->
+                </div>
+            </div>
+        </div>
+        <!-- End Header Bottom -->
+    </header>
+    <!-- End Header Area -->
+
+
+    {% block content %} 
+
+    {% endblock %}
+    
+
+
+
+    <!-- ========================= scroll-top ========================= -->
+    <a href="#" class="scroll-top">
+        <i class="lni lni-chevron-up"></i>
+    </a>
+
+    <!-- ========================= JS here ========================= -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/tiny-slider.js"></script>
+    <script src="assets/js/glightbox.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script type="text/javascript">
+        //========= Hero Slider 
+        tns({
+            container: '.hero-slider',
+            slideBy: 'page',
+            autoplay: true,
+            autoplayButtonOutput: false,
+            mouseDrag: true,
+            gutter: 0,
+            items: 1,
+            nav: false,
+            controls: true,
+            controlsText: ['<i class="lni lni-chevron-left"></i>', '<i class="lni lni-chevron-right"></i>'],
+        });
+
+        //======== Brand Slider
+        tns({
+            container: '.brands-logo-carousel',
+            autoplay: true,
+            autoplayButtonOutput: false,
+            mouseDrag: true,
+            gutter: 15,
+            nav: false,
+            controls: false,
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                540: {
+                    items: 3,
+                },
+                768: {
+                    items: 5,
+                },
+                992: {
+                    items: 6,
+                }
+            }
+        });
+    </script>
+
+
+</body>
+</html>
