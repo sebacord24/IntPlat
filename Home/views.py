@@ -162,6 +162,7 @@ def agregar_cliente(request):
 
 
 def autenticar_usuario(request):
+    data={"mensaje":""}
     if request.method == 'POST':
         rut = request.POST.get('rut')
         password = request.POST.get('password')
@@ -169,19 +170,24 @@ def autenticar_usuario(request):
         try:
             django_cursor = connection.cursor()
             cursor = django_cursor.connection.cursor()
-
+            
             with connection.cursor() as cursor:
                 # Ejecutar el procedimiento almacenado
-                resultado = cursor.var(str)
+                resultado = cursor.var(str).var
+                
                 cursor.callproc('autenticar_usuario', [rut, password, resultado])
 
                 # Obtener el resultado del procedimiento almacenado
                 resultado = resultado.getvalue()
-
+                print(f"{rut} {password} {resultado}")
                 if resultado == '1':
                     # Autenticación exitosa
                     user = authenticate(request, username=rut, password=password)
-                    login(request, user)
+                    
+                    #login(request, user)
+                    request.session["usuario"]=rut
+                    usua=request.session["usuario"]
+                    print(f"Usuario:{usua}")
                     messages.success(request, 'Inicio de sesión exitoso.')
                     return redirect('home')
                 elif resultado == '0':
@@ -190,12 +196,13 @@ def autenticar_usuario(request):
                 elif resultado == '-1':
                     # Error en el procedimiento
                     messages.error(request, 'Error al autenticar el usuario. Por favor, inténtalo nuevamente.')
-        
+            
         except Exception as e:
             # Error en el procedimiento almacenado
             messages.error(request, 'Error al autenticar el usuario. Por favor, inténtalo nuevamente.')
+            data["mensaje"]=f"'Error al autenticar el usuario. Por favor, inténtalo nuevamente.'{e} "
 
-    return render(request, 'Home/login.html')
+    return render(request, 'Home/login.html',data)
 
 
 def agregar_libro(request, id_libro):
@@ -236,17 +243,27 @@ def pago(request):
 
 def confirmacion_compra(request):
     carrito = Carrito(request)
-    id_compra = None  # Declarar el ID de la compra como None inicialmente
 
     # Obtener los productos del carrito
     total_productos = carrito.cantidad_total()
     total_pago = carrito.calcular_total()
-    id_cliente = request.user.id
+    id_cliente = request.session["usuario"]
     estado = 'Comprado'  # Define el estado deseado de la compra
-
+    print(f"id cliente {id_cliente}")
+    cli = Cliente.objects.get(rut=id_cliente)
+    print(f"Cliente:{cli.rut}")
     try:
+        with connection.cursor() as cursor:
+            cursor.execute('SELECT "LIBRERIA"."SEQ_COMPRA".NEXTVAL FROM DUAL')
+            id_compra = cursor.fetchone()[0]
+
         # Crear una instancia de Compra
-        compra = Compra(total_productos=total_productos, total_pago=total_pago, id_cliente_id=id_cliente, estado=estado)
+        compra = Compra()
+        compra.id_compra = id_compra
+        compra.total_productos = total_productos
+        compra.total_pago = total_pago
+        compra.id_cliente = cli
+        compra.estado = estado
         compra.save()
 
         # Limpiar el carrito
